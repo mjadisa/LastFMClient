@@ -58,6 +58,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/cd_iv_album_art"
         app:imageUrl="@{album.image}"
         app:layout_constraintBottom_toBottomOf="@+id/tvArtist"
         app:layout_constraintEnd_toEndOf="parent"

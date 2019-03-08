@@ -1,11 +1,8 @@
 package com.example.lastfmclient.screens.home.di;
 
-import android.app.Application;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.example.lastfmclient.data.repo.DataSource;
-import com.example.lastfmclient.data.repo.LastFMRepository;
 import com.example.lastfmclient.di.Repository;
 import com.example.lastfmclient.screens.home.HomeActivity;
 import com.example.lastfmclient.screens.home.HomeViewModel;

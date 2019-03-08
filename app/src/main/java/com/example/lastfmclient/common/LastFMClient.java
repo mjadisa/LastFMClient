@@ -3,7 +3,6 @@ package com.example.lastfmclient.common;
 import android.app.Activity;
 import android.app.Application;
 
-import com.example.lastfmclient.di.AppComponent;
 import com.example.lastfmclient.di.DaggerAppComponent;
 
 import javax.inject.Inject;

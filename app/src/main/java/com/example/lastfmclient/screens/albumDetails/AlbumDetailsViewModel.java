@@ -8,7 +8,6 @@ import android.databinding.ObservableBoolean;
 import com.example.lastfmclient.data.albumDetails.Album;
 import com.example.lastfmclient.data.albumDetails.AlbumDetails;
 import com.example.lastfmclient.data.repo.DataSource;
-import com.example.lastfmclient.data.repo.LastFMRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

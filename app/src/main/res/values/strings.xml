@@ -6,4 +6,5 @@
     <string name="album_name_label">Album: %s</string>
     <string name="artist_name_label">Artist: %s</string>
     <string name="wiki_label">Wiki: %s</string>
+    <string name="cd_iv_album_art">An Image representing the album cover art</string>
 </resources>
