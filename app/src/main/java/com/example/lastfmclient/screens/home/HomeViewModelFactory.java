@@ -5,14 +5,15 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.lastfmclient.data.repo.DataSource;
 import com.example.lastfmclient.data.repo.LastFMRepository;
 
 public class HomeViewModelFactory implements ViewModelProvider.Factory {
 
     private final Application application;
-    private final LastFMRepository lastFMRepository;
+    private final DataSource lastFMRepository;
 
-    public HomeViewModelFactory(Application application, LastFMRepository lastFMRepository) {
+    public HomeViewModelFactory(Application application, DataSource lastFMRepository) {
         this.application = application;
         this.lastFMRepository = lastFMRepository;
     }

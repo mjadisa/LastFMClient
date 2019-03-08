@@ -60,8 +60,8 @@ public class NetworkModule {
                                             @LoggingInterceptor Interceptor httpLoggingInterceptor,
                                             @ApiInterceptor Interceptor apiInterceptor) {
         return new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(apiInterceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .connectTimeout(Constants.API_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Constants.API_TIMEOUT, TimeUnit.SECONDS)
                 .cache(cache)

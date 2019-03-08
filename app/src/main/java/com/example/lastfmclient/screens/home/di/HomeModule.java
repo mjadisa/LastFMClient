@@ -4,7 +4,9 @@ import android.app.Application;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 
+import com.example.lastfmclient.data.repo.DataSource;
 import com.example.lastfmclient.data.repo.LastFMRepository;
+import com.example.lastfmclient.di.Repository;
 import com.example.lastfmclient.screens.home.HomeActivity;
 import com.example.lastfmclient.screens.home.HomeViewModel;
 import com.example.lastfmclient.screens.home.HomeViewModelFactory;
@@ -17,7 +19,7 @@ public class HomeModule {
         @HomeScope
         @Provides
         public HomeViewModelFactory provideHomeViewModelFactory(Application application,
-                                                                LastFMRepository lastFMRepository) {
+                                                                @Repository DataSource lastFMRepository) {
             return new HomeViewModelFactory(application, lastFMRepository);
         }
 

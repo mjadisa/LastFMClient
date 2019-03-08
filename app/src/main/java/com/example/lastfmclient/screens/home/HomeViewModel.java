@@ -40,12 +40,16 @@ public class HomeViewModel extends AndroidViewModel {
         compositeDisposable = new CompositeDisposable();
     }
 
-    public LiveData<List<Album>> getAlbumsObservable() {
+    LiveData<List<Album>> getAlbumsObservable() {
         return albumsObservable;
     }
 
-    public ObservableBoolean getProgressObservable() {
+    ObservableBoolean getProgressObservable() {
         return progressObservable;
+    }
+
+    void getAlbums(String albumName) {
+        getData(albumName);
     }
 
 
