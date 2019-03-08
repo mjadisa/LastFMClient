@@ -12,13 +12,14 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 import com.example.lastfmclient.R;
+import com.example.lastfmclient.data.albumResults.Album;
 import com.example.lastfmclient.databinding.ActivityHomeBinding;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedListener {
 
     @Inject
     HomeViewModel homeViewModel;
@@ -32,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         ActivityHomeBinding activityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         activityHomeBinding.setProgressVisibility(homeViewModel.getProgressObservable());
 
-        AlbumsAdapter albumsAdapter = new AlbumsAdapter();
+        AlbumsAdapter albumsAdapter = new AlbumsAdapter(this);
         RecyclerView recyclerView = findViewById(R.id.rvAlbums);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(albumsAdapter);
@@ -60,4 +61,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onAlbumSelected(Album album) {
+
+    }
 }

@@ -20,8 +20,11 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 
     private final List<Album> albums;
 
-    public AlbumsAdapter() {
+    private static OnAlbumSelectedListener listener = null;
+
+    public AlbumsAdapter(OnAlbumSelectedListener listener) {
         this.albums = new ArrayList<>();
+        AlbumsAdapter.listener = listener;
     }
 
     public void setData(List<Album> albums) {
@@ -57,6 +60,9 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 
         void bind(Album album) {
             itemAlbumBinding.setAlbum(album);
+            if (listener != null) {
+                itemAlbumBinding.setListener(listener);
+            }
             itemAlbumBinding.executePendingBindings();
         }
 
