@@ -12,9 +12,11 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 import com.example.lastfmclient.R;
+import com.example.lastfmclient.common.Constants;
 import com.example.lastfmclient.common.PaginationListener;
 import com.example.lastfmclient.data.albumResults.Album;
 import com.example.lastfmclient.databinding.ActivityHomeBinding;
+import com.example.lastfmclient.screens.albumDetails.AlbumDetailsActivity;
 
 import javax.inject.Inject;
 
@@ -66,7 +68,11 @@ public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedLi
 
     @Override
     public void onAlbumSelected(Album album) {
-
+        Intent intent = new Intent(this,
+                AlbumDetailsActivity.class);
+        intent.putExtra(Constants.KEY_ALBUM_NAME, album.getName());
+        intent.putExtra(Constants.KEY_ALBUM_ARTIST, album.getArtist());
+        startActivity(intent);
     }
 
     @Override

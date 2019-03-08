@@ -2,6 +2,7 @@ package com.example.lastfmclient.screens.albumDetails.di;
 
 import android.arch.lifecycle.ViewModelProviders;
 
+import com.example.lastfmclient.data.repo.DataSource;
 import com.example.lastfmclient.data.repo.LastFMRepository;
 import com.example.lastfmclient.di.Repository;
 import com.example.lastfmclient.screens.albumDetails.AlbumDetailsActivity;
@@ -16,7 +17,7 @@ public class AlbumDetailsModule {
     @AlbumDetailsScope
     @Provides
     public AlbumDetailsViewModelFactory provideAlbumDetailsViewModelFactory(
-            @Repository LastFMRepository lastFMRepository) {
+            @Repository DataSource lastFMRepository) {
         return new AlbumDetailsViewModelFactory(lastFMRepository);
     }
 

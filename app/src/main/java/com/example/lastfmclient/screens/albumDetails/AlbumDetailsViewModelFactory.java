@@ -20,7 +20,7 @@ public class AlbumDetailsViewModelFactory implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(HomeViewModel.class)) {
+        if (modelClass.isAssignableFrom(AlbumDetailsViewModel.class)) {
             return  (T) new AlbumDetailsViewModel(lastFMRepository);
         }
         throw new IllegalArgumentException("The class has to be an instance of: "

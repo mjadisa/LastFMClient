@@ -4,12 +4,15 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.support.annotation.NonNull;
 
+import com.example.lastfmclient.common.Constants;
 import com.example.lastfmclient.data.albumResults.Album;
 import com.example.lastfmclient.data.model.AlbumResults;
 import com.example.lastfmclient.data.repo.DataSource;
+import com.example.lastfmclient.screens.albumDetails.AlbumDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +73,7 @@ public class HomeViewModel extends AndroidViewModel {
     void loadMoreAlbums() {
         getData(currentSearchQuery, false);
     }
+
 
     private void getData(String albumName, boolean isFreshQuery) {
         if (isFreshQuery) {
