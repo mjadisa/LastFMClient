@@ -1,5 +1,6 @@
 package com.example.lastfmclient.net;
 
+import com.example.lastfmclient.data.albumDetails.AlbumDetails;
 import com.example.lastfmclient.data.albumResults.AlbumResultsResponse;
 
 import io.reactivex.Single;
@@ -14,4 +15,11 @@ public interface LastFMService {
                                                        @Query("limit") int limit,
                                                        @Query("page") int page,
                                                        @Query("format") String responseFormat);
+
+
+    @GET(".")
+    Single<AlbumDetails> getAlbumInfo(@Query("method") String methodName,
+                                      @Query("album") String albumName,
+                                      @Query("artist") String albumArtist,
+                                      @Query("format") String responseFormat);
 }

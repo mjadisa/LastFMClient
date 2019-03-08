@@ -14,7 +14,7 @@
     app:cardUseCompatPadding="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:onClick="@{()->listener.onAlbumSelected(album)}"
     >
 
 <android.support.constraint.ConstraintLayout

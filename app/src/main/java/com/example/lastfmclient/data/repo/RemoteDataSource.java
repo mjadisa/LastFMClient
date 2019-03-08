@@ -1,6 +1,7 @@
 package com.example.lastfmclient.data.repo;
 
 import com.example.lastfmclient.common.Constants;
+import com.example.lastfmclient.data.albumDetails.AlbumDetails;
 import com.example.lastfmclient.data.model.AlbumResults;
 import com.example.lastfmclient.net.LastFMService;
 
@@ -27,5 +28,14 @@ public class RemoteDataSource implements DataSource {
                         Integer.parseInt(result.getResults().getOpensearchItemsPerPage()),
                         Integer.parseInt(result.getResults().getOpensearchTotalResults()),
                         result.getResults().getAlbummatches().getAlbum())));
+    }
+
+    @Override
+    public Maybe<AlbumDetails> getAlbumDetails(String albumName, String artistName) {
+        return lastFMService.getAlbumInfo(Constants.QUERY_ALBUM_GET_INFO,
+                albumName,
+                artistName,
+                Constants.RESULT_FORMAT)
+                .flatMapMaybe(Maybe::just);
     }
 }
