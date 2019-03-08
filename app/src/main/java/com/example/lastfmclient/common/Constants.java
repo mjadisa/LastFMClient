@@ -11,4 +11,7 @@ public class Constants {
     public static final int CACHE_SIZE = 5 * 1024 * 1024; //5 MB
     public static final int API_TIMEOUT = 30;
 
+    public static final String KEY_ALBUM_NAME = "album_name";
+    public static final String KEY_ALBUM_ARTIST = "album_artist";
+
 }
