@@ -5,8 +5,8 @@ import javax.inject.Singleton;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
-@Component(modules = {AndroidInjectionModule.class, NetworkModule.class})
+@Component(modules = {AndroidInjectionModule.class, NetworkModule.class, RepositoryModule.class})
 @Singleton
-public interface APIComponent {
+public interface AppComponent {
 
 }

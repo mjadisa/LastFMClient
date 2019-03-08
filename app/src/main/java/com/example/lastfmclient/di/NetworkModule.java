@@ -3,6 +3,8 @@ package com.example.lastfmclient.di;
 import android.app.Application;
 
 import com.example.lastfmclient.common.Constants;
+import com.example.lastfmclient.data.repo.DataSource;
+import com.example.lastfmclient.data.repo.RemoteDataSource;
 import com.example.lastfmclient.net.LastFMService;
 
 import java.util.concurrent.TimeUnit;
@@ -81,6 +83,13 @@ public class NetworkModule {
     @Singleton
     public LastFMService provideLastFMService(Retrofit retrofit) {
         return retrofit.create(LastFMService.class);
+    }
+
+    @Provides
+    @Remote
+    @Singleton
+    public DataSource provideRemoteDataSource(LastFMService lastFMService) {
+        return new RemoteDataSource(lastFMService);
     }
 
 }
