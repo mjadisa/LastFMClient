@@ -1,8 +1,6 @@
 package com.example.lastfmclient.data.repo;
 
-import com.example.lastfmclient.data.albumResults.Album;
-
-import java.util.List;
+import com.example.lastfmclient.data.model.AlbumResults;
 
 import io.reactivex.Maybe;
 
@@ -15,7 +13,7 @@ public class LastFMRepository implements DataSource {
     }
 
     @Override
-    public Maybe<List<Album>> getAlbums(String albumName, int page) {
+    public Maybe<AlbumResults> getAlbums(String albumName, int page) {
         return remoteDataSource.getAlbums(albumName, page);
     }
 }

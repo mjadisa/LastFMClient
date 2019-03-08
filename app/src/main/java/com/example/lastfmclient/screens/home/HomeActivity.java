@@ -12,6 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 import com.example.lastfmclient.R;
+import com.example.lastfmclient.common.PaginationListener;
 import com.example.lastfmclient.data.albumResults.Album;
 import com.example.lastfmclient.databinding.ActivityHomeBinding;
 
@@ -19,7 +20,8 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedListener {
+public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedListener,
+        PaginationListener.PaginationStateListener {
 
     @Inject
     HomeViewModel homeViewModel;
@@ -34,10 +36,11 @@ public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedLi
         activityHomeBinding.setProgressVisibility(homeViewModel.getProgressObservable());
 
         AlbumsAdapter albumsAdapter = new AlbumsAdapter(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RecyclerView recyclerView = findViewById(R.id.rvAlbums);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(albumsAdapter);
-
+        recyclerView.addOnScrollListener(new PaginationListener(linearLayoutManager, this));
         homeViewModel.getAlbumsObservable().observe(this, albumsAdapter::setData);
     }
 
@@ -64,5 +67,20 @@ public class HomeActivity extends AppCompatActivity implements OnAlbumSelectedLi
     @Override
     public void onAlbumSelected(Album album) {
 
+    }
+
+    @Override
+    public boolean isLoading() {
+        return homeViewModel.isLoading();
+    }
+
+    @Override
+    public boolean isLastPage() {
+        return homeViewModel.isLastPage();
+    }
+
+    @Override
+    public void loadMoreItems() {
+        homeViewModel.loadMoreAlbums();
     }
 }

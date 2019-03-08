@@ -8,7 +8,7 @@ import android.databinding.ObservableBoolean;
 import android.support.annotation.NonNull;
 
 import com.example.lastfmclient.data.albumResults.Album;
-import com.example.lastfmclient.data.albumResults.AlbumResultsResponse;
+import com.example.lastfmclient.data.model.AlbumResults;
 import com.example.lastfmclient.data.repo.DataSource;
 
 import java.util.ArrayList;
@@ -30,14 +30,20 @@ public class HomeViewModel extends AndroidViewModel {
 
     private final CompositeDisposable compositeDisposable;
 
+    private boolean isLoading;
+    private boolean isLastPage;
+    private int currentPage = 1;
+    private String currentSearchQuery;
+
 
     public HomeViewModel(@NonNull Application application, DataSource lastFMRepository) {
         super(application);
         this.lastFMRepository = lastFMRepository;
-        albumsObservable  = new MutableLiveData<>();
+        albumsObservable = new MutableLiveData<>();
         progressObservable = new ObservableBoolean(false);
         albums = new ArrayList<>();
         compositeDisposable = new CompositeDisposable();
+        currentSearchQuery = "";
     }
 
     LiveData<List<Album>> getAlbumsObservable() {
@@ -49,20 +55,40 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     void getAlbums(String albumName) {
-        getData(albumName);
+        currentSearchQuery = albumName;
+        getData(currentSearchQuery, true);
     }
 
+    boolean isLoading() {
+        return isLoading;
+    }
 
-    private void getData(String albumName) {
-        compositeDisposable.add(lastFMRepository.getAlbums(albumName, 1)
+    boolean isLastPage() {
+        return isLastPage;
+    }
+
+    void loadMoreAlbums() {
+        getData(currentSearchQuery, false);
+    }
+
+    private void getData(String albumName, boolean isFreshQuery) {
+        if (isFreshQuery) {
+            resetState();
+        }
+        compositeDisposable.add(lastFMRepository.getAlbums(albumName, currentPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(consumer -> progressObservable.set(true))
-                .doOnEvent((success, failure) -> progressObservable.set(false))
+                .doOnSubscribe(consumer -> processLoadingStateChange(true))
+                .doOnEvent((success, failure) -> processLoadingStateChange(false))
                 .subscribe(this::handleSuccess, this::handleError));
     }
 
-    private void handleSuccess(List<Album> albums) {
+
+    private void handleSuccess(AlbumResults albumResults) {
+        currentPage++;
+        isLastPage = (albumResults.getStartIndex() + albumResults.getItemsPerPage())
+                >= albumResults.getTotalResults();
+        albums.addAll(albumResults.getAlbumList());
         albumsObservable.setValue(albums);
     }
 
@@ -70,9 +96,24 @@ public class HomeViewModel extends AndroidViewModel {
         throwable.printStackTrace();
     }
 
+    private void resetState() {
+        albums.clear();
+        currentPage = 1;
+        isLastPage = false;
+        isLoading = false;
+    }
+
+    private void processLoadingStateChange(boolean isLoadingInProgress) {
+        isLoading = isLoadingInProgress;
+        progressObservable.set(isLoading);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
+        if (isLoading) {
+            processLoadingStateChange(false);
+        }
         compositeDisposable.clear();
     }
 }
