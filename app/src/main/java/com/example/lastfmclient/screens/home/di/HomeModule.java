@@ -18,9 +18,9 @@ import dagger.Provides;
 public class HomeModule {
         @HomeScope
         @Provides
-        public HomeViewModelFactory provideHomeViewModelFactory(Application application,
-                                                                @Repository DataSource lastFMRepository) {
-            return new HomeViewModelFactory(application, lastFMRepository);
+        public HomeViewModelFactory provideHomeViewModelFactory(
+                @Repository DataSource lastFMRepository) {
+            return new HomeViewModelFactory(lastFMRepository);
         }
 
         @HomeScope

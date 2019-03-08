@@ -1,18 +1,13 @@
 package com.example.lastfmclient.screens.home;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Intent;
+import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
-import android.support.annotation.NonNull;
 
-import com.example.lastfmclient.common.Constants;
 import com.example.lastfmclient.data.albumResults.Album;
 import com.example.lastfmclient.data.model.AlbumResults;
 import com.example.lastfmclient.data.repo.DataSource;
-import com.example.lastfmclient.screens.albumDetails.AlbumDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeViewModel extends AndroidViewModel {
+public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<List<Album>> albumsObservable;
 
@@ -39,8 +34,7 @@ public class HomeViewModel extends AndroidViewModel {
     private String currentSearchQuery;
 
 
-    public HomeViewModel(@NonNull Application application, DataSource lastFMRepository) {
-        super(application);
+    public HomeViewModel(DataSource lastFMRepository) {
         this.lastFMRepository = lastFMRepository;
         albumsObservable = new MutableLiveData<>();
         progressObservable = new ObservableBoolean(false);
@@ -49,7 +43,7 @@ public class HomeViewModel extends AndroidViewModel {
         currentSearchQuery = "";
     }
 
-    LiveData<List<Album>> getAlbumsObservable() {
+    public LiveData<List<Album>> getAlbumsObservable() {
         return albumsObservable;
     }
 
@@ -57,7 +51,7 @@ public class HomeViewModel extends AndroidViewModel {
         return progressObservable;
     }
 
-    void getAlbums(String albumName) {
+    public void getAlbums(String albumName) {
         currentSearchQuery = albumName;
         getData(currentSearchQuery, true);
     }
