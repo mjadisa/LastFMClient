@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="progressVisibility"
+            type="android.databinding.ObservableBoolean" />
         <variable
             name="albumDetails"
             type="com.example.lastfmclient.data.albumDetails.Album" />
@@ -8,12 +13,12 @@
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_album_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
@@ -26,29 +31,43 @@
 
     <TextView
         android:id="@+id/tv_album_artist"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:text="@{@string/artist_name_label(albumDetails.artist)}"
-        tools:text="Artist Name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_album_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_album_name"
+        tools:text="Artist Name" />
 
     <TextView
         android:id="@+id/tv_wiki"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:text="@{@string/wiki_label(albumDetails.wiki.summary)}"
-        tools:text="Wiki"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_album_artist"
+        tools:text="Wiki" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:visibility="@{progressVisibility ? View.VISIBLE : View.GONE }"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_album_artist" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>

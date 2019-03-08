@@ -26,6 +26,8 @@ public class AlbumDetailsActivity extends AppCompatActivity {
         ActivityAlbumDetailsBinding albumDetailsBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_album_details);
 
+        albumDetailsBinding.setProgressVisibility(albumDetailsViewModel.getProgressObservable());
+
         albumDetailsViewModel.getAlbumDetailsObservable().observe(this,
                 albumDetailsBinding::setAlbumDetails);
 
