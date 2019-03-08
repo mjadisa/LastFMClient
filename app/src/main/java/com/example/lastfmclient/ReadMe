@@ -1,0 +1,11 @@
+Possible Improvements:
+
+1. Use Pagination library from Architecture Components to handle pagination
+2. Separate layouts for phones and tablets - Master Detail Flow
+3. More unit tests for other ViewModels and Instrumented tests for UI classes
+4. Saving search queries to display search history during search
+5. Animations - Shared Element Transitions for navigating activities and other subtle animations taking advantage of API 21+
+6. Using parcels to transport model across activities
+7. Implementing Local DataSource - using Room or other database solutions
+8. Implementing In-Memory Cache in repository
+
