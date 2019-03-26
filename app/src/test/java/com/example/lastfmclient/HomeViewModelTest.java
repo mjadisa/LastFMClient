@@ -31,17 +31,13 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HomeViewModelTest {
+    private final AlbumResults albumResults = TestUtils.generateAlbumSearchResults();
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
-
     @Mock
     private LastFMRepository lastFMRepository;
-
     @Mock
     private Observer<List<Album>> albumsObserver;
-
-    private final AlbumResults albumResults = TestUtils.generateAlbumSearchResults();
-
     private HomeViewModel homeViewModel;
 
     @BeforeClass

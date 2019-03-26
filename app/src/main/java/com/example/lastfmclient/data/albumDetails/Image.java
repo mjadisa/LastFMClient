@@ -1,4 +1,3 @@
-
 package com.example.lastfmclient.data.albumDetails;
 
 import com.google.gson.annotations.Expose;

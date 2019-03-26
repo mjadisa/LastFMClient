@@ -18,9 +18,8 @@ import java.util.List;
 
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder> {
 
-    private final List<Album> albums;
-
     private static OnAlbumSelectedListener listener = null;
+    private final List<Album> albums;
 
     public AlbumsAdapter(OnAlbumSelectedListener listener) {
         this.albums = new ArrayList<>();
@@ -58,14 +57,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
             this.itemAlbumBinding = itemAlbumBinding;
         }
 
-        void bind(Album album) {
-            itemAlbumBinding.setAlbum(album);
-            if (listener != null) {
-                itemAlbumBinding.setListener(listener);
-            }
-            itemAlbumBinding.executePendingBindings();
-        }
-
         @BindingAdapter("imageUrl")
         public static void getAlbumArt(ImageView imageView, List<Image> imageList) {
             Image largeImage = imageList.get(imageList.size() - 1);
@@ -77,6 +68,14 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
             } else {
                 Picasso.get().load(R.mipmap.ic_launcher_round).into(imageView);
             }
+        }
+
+        void bind(Album album) {
+            itemAlbumBinding.setAlbum(album);
+            if (listener != null) {
+                itemAlbumBinding.setListener(listener);
+            }
+            itemAlbumBinding.executePendingBindings();
         }
     }
 

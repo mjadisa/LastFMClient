@@ -2,69 +2,72 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="album"
             type="com.example.lastfmclient.data.albumResults.Album" />
+
         <variable
             name="listener"
             type="com.example.lastfmclient.screens.home.OnAlbumSelectedListener" />
     </data>
-<android.support.v7.widget.CardView
-    app:cardUseCompatPadding="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="@{()->listener.onAlbumSelected(album)}"
-    >
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="36dp"
-
-    >
-
-    <TextView
-        android:id="@+id/tvAlbum"
-        android:layout_width="0dp"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="84dp"
-        android:text="@{album.name}"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/ivAlbumArt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Album Name" />
+        android:onClick="@{()->listener.onAlbumSelected(album)}"
+        app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/tvArtist"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:text="@{album.artist}"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/ivAlbumArt"
-        app:layout_constraintStart_toStartOf="@+id/tvAlbum"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlbum"
-        tools:text="Artist Name" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="36dp"
 
-    <ImageView
-        android:id="@+id/ivAlbumArt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/cd_iv_album_art"
-        app:imageUrl="@{album.image}"
-        app:layout_constraintBottom_toBottomOf="@+id/tvArtist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvAlbum"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-</android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+            >
+
+            <TextView
+                android:id="@+id/tvAlbum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="84dp"
+                android:text="@{album.name}"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toStartOf="@+id/ivAlbumArt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Album Name" />
+
+            <TextView
+                android:id="@+id/tvArtist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{album.artist}"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/ivAlbumArt"
+                app:layout_constraintStart_toStartOf="@+id/tvAlbum"
+                app:layout_constraintTop_toBottomOf="@+id/tvAlbum"
+                tools:text="Artist Name" />
+
+            <ImageView
+                android:id="@+id/ivAlbumArt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/cd_iv_album_art"
+                app:imageUrl="@{album.image}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvArtist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvAlbum"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </layout>

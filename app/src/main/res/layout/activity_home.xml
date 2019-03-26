@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="progressVisibility"
             type="android.databinding.ObservableBoolean" />
     </data>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screens.home.HomeActivity">
-
-
-    <android.support.v7.widget.RecyclerView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvAlbums"
-        />
+        tools:context=".screens.home.HomeActivity">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        tools:visibility="visible"
-        android:elevation="5dp"
-        android:visibility="@{progressVisibility ? View.VISIBLE : View.GONE }"
-        />
-</FrameLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="5dp"
+            android:visibility="@{progressVisibility ? View.VISIBLE : View.GONE }"
+            tools:visibility="visible" />
+    </FrameLayout>
 </layout>

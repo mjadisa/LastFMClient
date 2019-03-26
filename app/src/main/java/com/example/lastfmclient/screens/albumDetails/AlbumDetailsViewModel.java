@@ -37,11 +37,11 @@ public class AlbumDetailsViewModel extends ViewModel {
 
     void getAlbumDetails(String albumName, String albumArtist) {
         compositeDisposable.add(lastFMRepository.getAlbumDetails(albumName, albumArtist)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSubscribe(disposable -> progressObservable.set(true))
-        .doOnEvent((success, failure) -> progressObservable.set(false))
-        .subscribe(this::handleSuccess, this::handleFailure));
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(disposable -> progressObservable.set(true))
+                .doOnEvent((success, failure) -> progressObservable.set(false))
+                .subscribe(this::handleSuccess, this::handleFailure));
     }
 
     private void handleSuccess(AlbumDetails albumDetails) {
